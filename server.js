@@ -2,6 +2,7 @@
 const http = require('http')  
 const port = 8001
 
+const url = require('url');
 
 // base list of cars
 const cars = [
@@ -20,7 +21,21 @@ const cars = [
 ];
 
 const requestHandler = (request, response) => {  
-    response.end(JSON.stringify(cars));
+    // get the paramaters from the request
+    var q = url.parse(request.url);
+
+    if (q.query === 'tax=true') {
+        // if the request contains tax=true apply the tax
+        var withTax = cars.map(function (c) {
+            return { name: c.name, price: c.price * 1.18 };
+        });
+        response.end(JSON.stringify(withTax));
+
+
+    } else {
+        // return the base list of cars
+        response.end(JSON.stringify(cars));
+    }
 }
 
 const server = http.createServer(requestHandler)
