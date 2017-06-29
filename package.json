@@ -1,0 +1,23 @@
+{
+  "name": "simple-car",
+  "version": "1.0.0",
+  "description": "Simple Car Express API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottmtraver/simple-car.git"
+  },
+  "author": "Scott Traver",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scottmtraver/simple-car/issues"
+  },
+  "homepage": "https://github.com/scottmtraver/simple-car#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}

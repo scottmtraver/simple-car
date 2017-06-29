@@ -8,6 +8,11 @@ Features:
  * Runs on port 8001
 
 
+Before you run the app you will need express through:
+
+```javascript
+npm install
+```
 To run the car server on localhost:8001 use the command:
 
 ```javascript
