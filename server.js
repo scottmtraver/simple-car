@@ -1,8 +1,6 @@
-// content of index.js
-const http = require('http')  
-const port = 8001
-
-const url = require('url');
+const express = require('express')
+const app = express();
+const port = 8001;
 
 // base list of cars
 const cars = [
@@ -20,30 +18,23 @@ const cars = [
     }
 ];
 
-const requestHandler = (request, response) => {  
-    // get the paramaters from the request
-    var q = url.parse(request.url);
+// Set up route
+app.get('/', function (req, res) {
 
-    if (q.query === 'tax=true') {
+    if (req.query.tax && req.query.tax == 'true') {
         // if the request contains tax=true apply the tax
         var withTax = cars.map(function (c) {
             return { name: c.name, price: c.price * 1.08 };
         });
-        response.end(JSON.stringify(withTax));
+        res.send(JSON.stringify(withTax));
 
 
     } else {
         // return the base list of cars
-        response.end(JSON.stringify(cars));
+        res.send(JSON.stringify(cars));
     }
-}
+})
 
-const server = http.createServer(requestHandler)
-
-server.listen(port, (err) => {  
-    if (err) {
-        return console.log('something bad happened', err)
-    }
-
+app.listen(port, function () {
     console.log(`server is listening on ${port}`)
 })
