@@ -27,7 +27,7 @@ const requestHandler = (request, response) => {
     if (q.query === 'tax=true') {
         // if the request contains tax=true apply the tax
         var withTax = cars.map(function (c) {
-            return { name: c.name, price: c.price * 1.18 };
+            return { name: c.name, price: c.price * 1.08 };
         });
         response.end(JSON.stringify(withTax));
 
