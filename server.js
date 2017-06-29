@@ -18,16 +18,25 @@ const cars = [
     }
 ];
 
+var pageviews = 0;
+
+var logger = function (req, res, next) {
+    pageviews++;
+    console.log('Somebody Looked At Cars! ' + pageviews)
+    next()
+}
+
+app.use(logger);
+
 // Set up route
 app.get('/', function (req, res) {
 
     if (req.query.tax && req.query.tax == 'true') {
-        // if the request contains tax=true apply the tax
+        // if the request contains tax AND tax=true apply the tax
         var withTax = cars.map(function (c) {
             return { name: c.name, price: c.price * 1.08 };
         });
         res.send(JSON.stringify(withTax));
-
 
     } else {
         // return the base list of cars
